@@ -1,0 +1,133 @@
+ <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Hacker Browser</title>
+  <style>
+    body { margin: 0; font-family: monospace; background: black; color: #00ff00; }
+    #lock, #browser, #learnmore { padding: 20px; }
+    #browser, #learnmore { display: none; }
+
+    #terminal {
+      white-space: pre-wrap;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    #bar {
+      background: #111; color: #00ff00; padding: 5px;
+      display: flex; gap: 5px;
+    }
+
+    #url {
+      flex: 1; padding: 4px;
+      background: #000; color: #0f0;
+      border: 1px solid #0f0;
+    }
+
+    iframe {
+      width: 100%; height: calc(100vh - 60px);
+      border: none; background: #000;
+    }
+
+    button {
+      background: #000; color: #0f0;
+      border: 1px solid #0f0; padding: 4px 8px;
+    }
+
+    #learnmore {
+      background: #111;
+      color: #0f0;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOCK SCREEN -->
+<div id="lock">
+  <div id="terminal"></div>
+
+  <input id="pw" type="password" placeholder="ENTER PASSWORD"
+         style="background:black;color:#0f0;border:1px solid #0f0;padding:5px;">
+  <button onclick="unlock()">UNLOCK</button>
+  <p id="msg"></p>
+</div>
+
+<!-- BROWSER SCREEN -->
+<div id="browser">
+  <div id="bar">
+    <button onclick="go()">Go</button>
+    <button onclick="showLearnMore()">Learn More</button>
+    <input id="url" value="https://beatleader.com/u/76561198409910559/scores?sort=date">
+  </div>
+  <iframe id="view" src="https://beatleader.com/u/76561198409910559/scores?sort=date"></iframe>
+</div>
+
+<!-- LEARN MORE PAGE -->
+<div id="learnmore">
+  <h1>TLMFA — Learn More</h1>
+  <p>Hi This is the learnmore for A_Hacker_Vibe_Browser.</p>
+  <p>Hi this is tridev101, I am the creator of this browser. Im just sharing thoughts here. I am learning HTML, C#, Python, and c plus plus. I mostly make browsers in HTML. I make GDI effects in python like paint splatter, paint spray, and inverting screen. In C# mostly games. But my C# games are private. c plus plus is just for making gdi effects too. This browser can only load certain websites. But no .onion formats. You cannot load youtube or iana. There are more websties that don't work but I know that Sober.vinegarhq.org works. So if you wanna use Roblox on your linux device you can use that runtime. Some linux os's are not supported for Sober but you can just get a fedora atomic linux os (linux) it will work. But the only os i know that doesn't work is kali linux. But im sure it has some others that dont support it. Also i made the browser because i thought it would be fun to code my first browser. Its cool right? Thats all. I will do more on the learn more when i feel like doing it.</p>
+
+  <p>Return to browser:</p>
+  <button onclick="backToBrowser()">Back</button>
+</div>
+
+<script>
+/* PASSWORD */
+const PASSWORD = "access";
+
+/* TERMINAL BOOT TEXT */
+const terminal = document.getElementById("terminal");
+let lines = [
+  "BOOTING SYSTEM...",
+  "LOADING SECURITY MODULES...",
+  "INITIALIZING FIREWALL...",
+  "SCANNING USER...",
+  "ACCESS RESTRICTED",
+  "ENTER PASSWORD TO CONTINUE"
+];
+
+let i = 0;
+function typeLine() {
+  if (i < lines.length) {
+    terminal.textContent += lines[i] + "\n";
+    i++;
+    setTimeout(typeLine, 500);
+  }
+}
+typeLine();
+
+/* PASSWORD CHECK */
+function unlock() {
+  const input = document.getElementById("pw").value;
+  if (input === PASSWORD) {
+    document.getElementById("lock").style.display = "none";
+    document.getElementById("browser").style.display = "block";
+  } else {
+    document.getElementById("msg").textContent = "ACCESS DENIED";
+  }
+}
+
+/* MINI BROWSER */
+function go() {
+  let u = document.getElementById("url").value.trim();
+  if (!u.startsWith("http")) u = "https://" + u;
+  document.getElementById("view").src = u;
+}
+
+/* LEARN MORE PAGE */
+function showLearnMore() {
+  document.getElementById("browser").style.display = "none";
+  document.getElementById("learnmore").style.display = "block";
+}
+
+function backToBrowser() {
+  document.getElementById("learnmore").style.display = "none";
+  document.getElementById("browser").style.display = "block";
+}
+</script>
+
+</body>
+</html>
